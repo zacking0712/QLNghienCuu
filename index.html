@@ -64,7 +64,7 @@
                                         placeholder="Nhập ID"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputID""></small>
                                 </div>
 
                                 <!-- Item 2 -->
@@ -78,7 +78,7 @@
                                         placeholder="Nhập Họ Tên"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputName""></small>
                                 </div>
 
                                 <!-- Item 3 -->
@@ -92,7 +92,7 @@
                                         placeholder="Nhập Địa Chỉ"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputDiaChi""></small>
                                 </div>
 
                                 <!-- Item 4 -->
@@ -106,7 +106,7 @@
                                         placeholder="Nhập Email"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputEmail""></small>
                                 </div>
 
                                 <!-- Item 5 -->
@@ -117,11 +117,12 @@
                                         name=""
                                         id=""
                                     >
-                                        <option selected>Chọn người dùng</option>
+                                        <option value="" selected>Chọn người dùng</option>
                                         <option value="1">Student</option>
                                         <option value="2">Employee</option>
                                         <option value="3">Customer</option>
                                     </select>
+                                    <small id="selectForm""></small>
                                 </div>
                                 
                                 <!-- Student -->
@@ -135,7 +136,7 @@
                                         placeholder="Điểm Toán"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputToan""></small>
                                 </div>
 
                                 <div class="student_group mb-3 col-4">
@@ -148,7 +149,7 @@
                                         placeholder="Điểm Lý"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputLy""></small>
                                 </div>
 
                                 <div class="student_group mb-3 col-4">
@@ -161,7 +162,7 @@
                                         placeholder="Điểm Hoá"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputHoa"></small>
                                 </div>
 
                                 <!-- Employee -->
@@ -175,7 +176,7 @@
                                         placeholder="Nhập lương"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inutNgayLuong""></small>
                                 </div>
 
                                 <div class="employee_group mb-3 col-6">
@@ -188,7 +189,7 @@
                                         placeholder="Nhập số ngày làm"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputSoNgayLam""></small>
                                 </div>
 
                                 <!-- Customer -->
@@ -202,7 +203,7 @@
                                         placeholder="Nhập tên công ty"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputCTY""></small>
                                 </div>
 
                                 <div class="customer_group mb-3 col-6">
@@ -215,12 +216,13 @@
                                         placeholder="Nhập trị giá"
                                         aria-describedby="helpId"
                                     />
-                                    <small id="helpId" class="text-muted">Help text</small>
+                                    <small id="inputHoaDon""></small>
                                 </div>
 
                                 <div class="customer_group mb-3">
                                     <label for="" class="form-label">Đánh giá</label>
                                     <textarea class="form-control" name="" id="danhGia" placeholder="Nhập đánh giá..." rows="3"></textarea>
+                                    <small id="inputDanhGia""></small>
                                 </div>
                                 
                             </form>
@@ -255,7 +257,7 @@
                     <select
                         class="form-select form-select-sm" aria-label="Small select example"
                         name=""
-                        id=""
+                        id="selectService"
                     >
                         <option selected>Choose Object</option>
                         <option value="">All</option>
@@ -305,6 +307,7 @@
         <script type="module" src="./models/Employee.js"></script>
         <script type="module" src="./models/Customer.js"></script>
         <script type="module" src="./models/Person.js"></script>
+        <script src="./validation/validation.js"></script>
         <script type="module" src="./controllers/index.js"></script>
     </body>
 </html>

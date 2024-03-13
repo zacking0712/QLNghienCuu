@@ -60,6 +60,10 @@ document.getElementById("btnAdd").onclick = () => {
     // console.log(arrField)
     let value = document.querySelector("form select").value;
     console.log(value)
+    if (value == "") {
+        alert("Chọn loại người dùng")
+        document.getElementById("selectForm").innerHTML = "(*) Hãy chọn loại người dùng"
+    }
     let listUser = person.listPerson
     switch(value) {
         case "1": {
@@ -70,7 +74,22 @@ document.getElementById("btnAdd").onclick = () => {
                 console.log(value)
                 userStudent[id] = value;
             }) 
-            person.addPerson(userStudent)
+            let isValid = true
+            isValid &= checkEmptyValue(userStudent.ID, "inputID")
+
+            isValid &= checkEmptyValue(userStudent.hoTen, "inputName") && checkName(userStudent.hoTen, "inputName")
+
+            isValid &= checkEmptyValue(userStudent.diaChi, "inputDiaChi")
+
+            isValid &= checkEmptyValue(userStudent.email, "inputEmail") && checkEmailValue(userStudent.email, "inputEmail")
+
+            isValid &= checkEmptyValue(userStudent.diemToan, "inputToan")
+            isValid &= checkEmptyValue(userStudent.diemLy, "inputLy")
+            isValid &= checkEmptyValue(userStudent.diemHoa, "inputHoa")
+
+            if (isValid) {
+                person.addPerson(userStudent)
+            }
             // console.table(person.listPerson)
             console.log(value)
             renderTemplate(value)
@@ -86,7 +105,23 @@ document.getElementById("btnAdd").onclick = () => {
                 console.log(value)
                 userEmployee[id] = value;
             }) 
-            person.addPerson(userEmployee)
+
+            let isValid = true
+            isValid &= checkEmptyValue(userEmployee.ID, "inputID")
+
+            isValid &= checkEmptyValue(userEmployee.hoTen, "inputName") && checkName(userEmployee.hoTen, "inputName")
+
+            isValid &= checkEmptyValue(userEmployee.diaChi, "inputDiaChi")
+
+            isValid &= checkEmptyValue(userEmployee.email, "inputEmail") && checkEmailValue(userEmployee.email, "inputEmail")
+
+            isValid &= checkEmptyValue(userEmployee.luongNgay, "inutNgayLuong")
+
+            isValid &= checkEmptyValue(userEmployee.soNgayLam, "inputSoNgayLam")
+
+            if(isValid) {
+                person.addPerson(userEmployee)
+            }
             // console.table(person.listPerson)
             console.log(value)
             renderTemplate()
@@ -102,7 +137,24 @@ document.getElementById("btnAdd").onclick = () => {
                 console.log(value)
                 userCustomer[id] = value;
             }) 
-            person.addPerson(userCustomer)
+            let isValid = true
+            isValid &= checkEmptyValue(userCustomer.ID, "inputID")
+
+            isValid &= checkEmptyValue(userCustomer.hoTen, "inputName") && checkName(userCustomer.hoTen, "inputName")
+
+            isValid &= checkEmptyValue(userCustomer.diaChi, "inputDiaChi")
+
+            isValid &= checkEmptyValue(userCustomer.email, "inputEmail") && checkEmailValue(userCustomer.email, "inputEmail")
+            
+            isValid &= checkEmptyValue(userCustomer.tenCTY, "inputCTY")
+
+            isValid &= checkEmptyValue(userCustomer.hoaDon, "inputHoaDon")
+
+            isValid &= checkEmptyValue(userCustomer.danhGia, "inputDanhGia")
+
+            if (isValid) {
+                person.addPerson(userCustomer)
+            }
             // console.table(person.listPerson)
             console.log(value)
             renderTemplate(value)
@@ -262,7 +314,7 @@ let updateUser = () => {
     console.log(listUser)
     switch(value) {
         case "1": {
-            let userStudent = new Student();
+            let userEmployee = new Student();
             arrField.forEach((item, index) => {
                 let { id, value } = item;
                 console.log(id)
@@ -275,7 +327,7 @@ let updateUser = () => {
             if (index1 != -1) {
                 person.updateUser(userStudent, index1)
                 renderTemplate()
-                $('#myModal').modal('hide');
+                $('#exampleModal').modal('hide');
                 saveDataLocal()
             }
             break;
@@ -295,7 +347,7 @@ let updateUser = () => {
             if (index2 != -1) {
                 person.updateUser(userEmployee, index2)
                 renderTemplate()
-                $('#myModal').modal('hide');
+                $('#exampleModal').modal('hide');
                 saveDataLocal()
             }
             break
@@ -315,13 +367,15 @@ let updateUser = () => {
             if (index3 != -1) {
                 person.updateUser(userCustomer, index3)
                 renderTemplate()
-                $('#myModal').modal('hide');
+                $('#exampleModal').modal('hide');
                 saveDataLocal()
             }
             break
         }
     }
 };
+document.getElementById("btnUpdate").onclick = updateUser;
+
 
 let sortName = ()  => {
     person.listPerson.sort((name1, name2 ) => {
@@ -339,10 +393,28 @@ let sortName = ()  => {
     renderTemplate()
     saveDataLocal()
 }
-
 sortName()
-  
-  document.getElementById("btnUpdate").onclick = updateUser;
+
+
+
+
+let choiceSelect = (selectType) => {
+    document.getElementById("tbody").innerHTML = '';
+
+    let afterFilter = selectType === "all" ? person.listPerson : person.listPerson.filter((userType) => userType.loaiNguoiDung === selectType)
+    renderTemplate(afterFilter)
+    console.log(afterFilter)
+
+}
+
+let selectSV = document.getElementById("selectService")
+selectSV.addEventListener("change", () => {
+    let optionValue = selectSV.value
+    console.log(optionValue)
+    choiceSelect(optionValue)
+})
+
+// choiceSelect("Customer")
 
 window.onload = () => {
     window.deleteUser = (ID) => {
