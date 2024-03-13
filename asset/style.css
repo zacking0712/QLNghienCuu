@@ -1,0 +1,5 @@
+form .student_group,
+form .employee_group,
+form .customer_group {
+    display: none;
+}
