@@ -10,6 +10,12 @@ let student = document.querySelectorAll(".student_group")
 let employee = document.querySelectorAll(".employee_group")
 let customer = document.querySelectorAll(".customer_group")
 
+// const hideInput = function() {
+//     student.style.display = "none"
+//     employee.style.display = "none"
+//     customer.style.display = "none"
+// }
+
 select.addEventListener("change", () => {
     // console.log(value)
     let value = document.querySelector("form select").value;
@@ -59,7 +65,7 @@ document.getElementById("btnAdd").onclick = () => {
     const arrField = document.querySelectorAll("form input, form select , form textarea")
     // console.log(arrField)
     let value = document.querySelector("form select").value;
-    console.log(value)
+    // console.log(value)
     if (value == "") {
         alert("Chọn loại người dùng")
         document.getElementById("selectForm").innerHTML = "(*) Hãy chọn loại người dùng"
@@ -70,8 +76,8 @@ document.getElementById("btnAdd").onclick = () => {
             const userStudent = new Student();
             arrField.forEach((item, index) => {
                 let { id, value } = item;
-                console.log(id)
-                console.log(value)
+                // console.log(id)
+                // console.log(value)
                 userStudent[id] = value;
             }) 
             let isValid = true
@@ -150,6 +156,7 @@ document.getElementById("btnAdd").onclick = () => {
             break
         }
     }
+    // hideInput()
     sortName()
     renderTemplate(value)
     saveDataLocal()
@@ -403,7 +410,7 @@ let selectSV = document.getElementById("selectService")
 selectSV.addEventListener("change", (event) => {
     let optionValue = event.target.value
     console.log("optionValue", optionValue)
-    // choiceSelect(optionValue)
+    choiceSelect(optionValue)
 })
 
 // choiceSelect("Customer")
