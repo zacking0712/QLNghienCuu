@@ -90,10 +90,6 @@ document.getElementById("btnAdd").onclick = () => {
             if (isValid) {
                 person.addPerson(userStudent)
             }
-            // console.table(person.listPerson)
-            console.log(value)
-            renderTemplate(value)
-            saveDataLocal()
             break;
         }
 
@@ -122,10 +118,6 @@ document.getElementById("btnAdd").onclick = () => {
             if(isValid) {
                 person.addPerson(userEmployee)
             }
-            // console.table(person.listPerson)
-            console.log(value)
-            renderTemplate()
-            saveDataLocal()
             break
         }
 
@@ -155,15 +147,14 @@ document.getElementById("btnAdd").onclick = () => {
             if (isValid) {
                 person.addPerson(userCustomer)
             }
-            // console.table(person.listPerson)
-            console.log(value)
-            renderTemplate(value)
-            saveDataLocal()
             break
         }
     }
-
-    
+    sortName()
+    renderTemplate(value)
+    saveDataLocal()
+    $('#exampleModal').modal('hide');
+    document.getElementById("user_form").reset()
 }
 // loai nguoi dung, co cac gia tri nao Khoa
 // em đặt loại người dùng là tên lun á chị
@@ -393,7 +384,7 @@ let sortName = ()  => {
     renderTemplate()
     saveDataLocal()
 }
-sortName()
+// sortName()
 
 
 
@@ -402,16 +393,17 @@ let choiceSelect = (selectType) => {
     document.getElementById("tbody").innerHTML = '';
 
     let afterFilter = selectType === "all" ? person.listPerson : person.listPerson.filter((userType) => userType.loaiNguoiDung === selectType)
-    renderTemplate(afterFilter)
-    console.log(afterFilter)
-
+    renderTemplate("1",afterFilter)
+    // console.log(afterFilter)
 }
 
+// choiceSelect("Student")
+
 let selectSV = document.getElementById("selectService")
-selectSV.addEventListener("change", () => {
-    let optionValue = selectSV.value
-    console.log(optionValue)
-    choiceSelect(optionValue)
+selectSV.addEventListener("change", (event) => {
+    let optionValue = event.target.value
+    console.log("optionValue", optionValue)
+    // choiceSelect(optionValue)
 })
 
 // choiceSelect("Customer")
